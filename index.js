@@ -4,12 +4,13 @@ import path from "path";
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import hpp from 'hpp';
-// xss-clean express-rate-limit hpp 
 dotenv.config();
 const __dirname = path.resolve();
 const app = express();
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // less strict
+}));
 app.use(xss());
 app.use(hpp());
 
